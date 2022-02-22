@@ -1,0 +1,73 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema hope_market
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema hope_market
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `hope_market` DEFAULT CHARACTER SET utf8 ;
+USE `hope_market` ;
+
+-- -----------------------------------------------------
+-- Table `hope_market`.`tb_usuarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hope_market`.`tb_usuarios` (
+  `id_user` BIGINT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `senha` VARCHAR(255) NOT NULL,
+  `pacote` ENUM('pacote1', 'pacote2', 'pacote3') NULL,
+  PRIMARY KEY (`id_user`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `hope_market`.`tb_produtos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hope_market`.`tb_produtos` (
+  `id_produtos` BIGINT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(255) NOT NULL,
+  `preco` DECIMAL NOT NULL,
+  `estoque` BIGINT NOT NULL,
+  `categoria` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id_produtos`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `hope_market`.`tb_carrinho`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hope_market`.`tb_carrinho` (
+  `id` BIGINT NOT NULL,
+  `id_compra` BIGINT NOT NULL,
+  `endereco` VARCHAR(255) NOT NULL,
+  `pagamento` VARCHAR(50) NOT NULL,
+  `data` DATE NOT NULL,
+  `fk_produtos` BIGINT NOT NULL,
+  `fk_usuarios` BIGINT NOT NULL,
+  INDEX `fk_tb_carrinho_tb_produtos1_idx` (`fk_produtos` ASC) VISIBLE,
+  INDEX `fk_tb_carrinho_tb_usuarios1_idx` (`fk_usuarios` ASC) VISIBLE,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_tb_carrinho_tb_produtos1`
+    FOREIGN KEY (`fk_produtos`)
+    REFERENCES `hope_market`.`tb_produtos` (`id_produtos`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_carrinho_tb_usuarios1`
+    FOREIGN KEY (`fk_usuarios`)
+    REFERENCES `hope_market`.`tb_usuarios` (`id_user`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
