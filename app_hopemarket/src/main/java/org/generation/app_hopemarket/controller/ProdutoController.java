@@ -39,6 +39,11 @@ public class ProdutoController {
     	return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
     }
     
+    @GetMapping("/categoria/{categoria}")
+    public ResponseEntity <List<Produto>> findByCategoriaProduto (@PathVariable String categoria){
+        return ResponseEntity.ok(repository.findAllByCategoriaContainingIgnoreCase(categoria));    
+    }
+
     @PostMapping
     public ResponseEntity<Produto> post (@RequestBody Produto produto){
     	return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));
