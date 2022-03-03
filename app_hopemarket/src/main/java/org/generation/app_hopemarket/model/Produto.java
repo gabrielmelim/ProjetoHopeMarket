@@ -32,9 +32,9 @@ public class Produto {
     @NotNull
     @Size(min = 2, max = 100)
     private String categoria;
-    
+
     @ManyToOne
-    @JsonIgnoreProperties ("produto")
+    @JsonIgnoreProperties("produto")
     private Carrinho carrinho;
 
     public Long getId() {

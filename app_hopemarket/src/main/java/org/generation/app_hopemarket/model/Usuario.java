@@ -1,22 +1,17 @@
 package org.generation.app_hopemarket.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import org.hibernate.validator.constraints.UniqueElements;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @NotNull
     private String nome;
@@ -25,20 +20,25 @@ public class Usuario {
     @Size(min = 6, max = 16)
     private String senha;
 
-    @UniqueElements
     @NotNull
+    @UniqueElements
     private String email;
 
-    public int getId() {
-        return this.id;
+
+
+
+
+
+    public long getId() {
+        return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
     public String getNome() {
-        return this.nome;
+        return nome;
     }
 
     public void setNome(String nome) {
@@ -46,7 +46,7 @@ public class Usuario {
     }
 
     public String getSenha() {
-        return this.senha;
+        return senha;
     }
 
     public void setSenha(String senha) {
@@ -54,12 +54,10 @@ public class Usuario {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
 }

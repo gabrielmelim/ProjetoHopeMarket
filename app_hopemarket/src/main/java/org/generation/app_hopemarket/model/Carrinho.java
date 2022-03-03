@@ -1,82 +1,73 @@
 package org.generation.app_hopemarket.model;
 
-import java.sql.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
+import java.util.List;
+
 @Entity
-@Table ( name = "tb_carrinho")
+@Table(name = "tb_carrinho")
 public class Carrinho {
 
     @Id
-    @GeneratedValue ( strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @NotNull
-    private int id_compras;
+    private String idcompra;
 
     @NotNull
-    private double pagamento;
-    
+    private String pagamento;
+
     @NotNull
     private String endereco;
 
     @NotNull
     private Date data;
-    
-    @OneToMany (mappedBy = "carrinho", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties ("carrinho")
+
+    @OneToMany(mappedBy = "carrinho",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("carrinho")
     private List<Produto> produto;
 
-    public Long getId() {
-        return this.id;
+    public String getIdcompra() {
+        return idcompra;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdcompra(String idcompra) {
+        this.idcompra = idcompra;
     }
 
-    public int getId_compras() {
-        return this.id_compras;
+    public String getPagamento() {
+        return pagamento;
     }
 
-    public void setId_compras(int id_compras) {
-        this.id_compras = id_compras;
-    }
-
-    public double getPagamento() {
-        return this.pagamento;
-    }
-
-    public void setPagamento(double pagamento) {
+    public void setPagamento(String pagamento) {
         this.pagamento = pagamento;
     }
 
     public String getEndereco() {
-        return this.endereco;
+        return endereco;
     }
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
- 
+
     public Date getData() {
-        return this.data;
+        return data;
     }
 
     public void setData(Date data) {
         this.data = data;
-    } 
+    }
 
-        
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
