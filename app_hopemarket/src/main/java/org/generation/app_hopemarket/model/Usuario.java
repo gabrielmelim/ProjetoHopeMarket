@@ -16,18 +16,18 @@ import org.hibernate.validator.constraints.UniqueElements;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @NotNull
-    String nome;
+    private String nome;
 
     @NotNull
     @Size(min = 6, max = 16)
-    String senha;
+    private String senha;
 
     @UniqueElements
     @NotNull
-    String email;
+    private String email;
 
     public int getId() {
         return this.id;
