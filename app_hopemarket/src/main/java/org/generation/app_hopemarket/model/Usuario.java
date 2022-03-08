@@ -31,6 +31,9 @@ public class Usuario {
 
 
 
+    public Usuario(String nome2, String cpf2, String email2, String senha2) {
+    }
+
     public String getCpf() {
         return this.cpf;
     }
