@@ -14,7 +14,6 @@ import org.generation.app_hopemarket.repository.UsuarioRepository;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.beans.BeanCopier.Generator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,16 +35,16 @@ public class UsuarioService {
                 usuario.setSenha(encoder.encode(usuario.getSenha()));
         
         novoUsuario = new Usuario(
-            usuario.getNome(),
-            usuario.getCpf(),
-            usuario.getEmail(),
-            usuario.getSenha());
+                    usuario.getNome(),
+                    usuario.getCpf(),
+                    usuario.getEmail(),
+                    usuario.getSenha());
 
             return ResponseEntity.status(201).body(repository.save(novoUsuario));
         }
     } 
       public ResponseEntity<UserCredentialDTO> validCredential(@Valid UserLoginDTO usuario){
-         return repository.findByEmail(usuario.getEmail()).map(u ->{
+         return repository.findByEmail(usuario.getEmail()).map(u -> {
              BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
              if (encoder.matches(usuario.getSenha(), u.getSenha())){
                  UserCredentialDTO credential = new UserCredentialDTO(
@@ -58,7 +57,8 @@ public class UsuarioService {
              else{
                  throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha inválida");
              }
-         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "E-mail não encontrado");
+         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "E-mail não encontrado"));
+        }
 
          private String generatorToken(String email, String senha){
              String structure = email + ":" + senha;
@@ -66,4 +66,4 @@ public class UsuarioService {
              return "Basic " + new String(structureBase64);
          }
       }
-}
+

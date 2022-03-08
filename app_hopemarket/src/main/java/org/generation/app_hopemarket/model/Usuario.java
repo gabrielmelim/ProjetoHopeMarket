@@ -1,11 +1,8 @@
 package org.generation.app_hopemarket.model;
 
-import org.hibernate.validator.constraints.UniqueElements;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_usuario")
@@ -18,20 +15,34 @@ public class Usuario {
     private String nome;
 
     @NotNull
-    @CPF
     private String cpf;
 
     @NotNull
-    @Size(min = 6, max = 16)
+    
     private String senha;
 
     @NotNull
-    @UniqueElements
     private String email;
 
+    public Usuario(){
+        super();
+    }
 
+    public Usuario(String nome, String cpf, String email, String senha) {
+        super();
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = senha;
+    }
 
-    public Usuario(String nome2, String cpf2, String email2, String senha2) {
+    public Usuario(Long id, String nome, String cpf, String email, String senha){
+        super();
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = senha;
     }
 
     public String getCpf() {

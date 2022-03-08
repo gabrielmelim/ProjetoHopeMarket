@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
 public class UserRegisterDTO {
-    private@NotBlank String nome;
+    private @NotBlank String nome;
     private @NotBlank @CPF String cpf;
     private @NotBlank @Email String email;
     private @NotBlank String senha;
