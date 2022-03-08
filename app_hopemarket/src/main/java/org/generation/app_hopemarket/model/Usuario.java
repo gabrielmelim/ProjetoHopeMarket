@@ -1,6 +1,7 @@
 package org.generation.app_hopemarket.model;
 
 import org.hibernate.validator.constraints.UniqueElements;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,6 +18,10 @@ public class Usuario {
     private String nome;
 
     @NotNull
+    @CPF
+    private String cpf;
+
+    @NotNull
     @Size(min = 6, max = 16)
     private String senha;
 
@@ -26,8 +31,13 @@ public class Usuario {
 
 
 
+    public String getCpf() {
+        return this.cpf;
+    }
 
-
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public long getId() {
         return id;
