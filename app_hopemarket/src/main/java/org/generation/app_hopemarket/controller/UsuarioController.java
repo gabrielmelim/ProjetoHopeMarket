@@ -2,9 +2,15 @@ package org.generation.app_hopemarket.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.generation.app_hopemarket.dtos.UserCredentialDTO;
+import org.generation.app_hopemarket.dtos.UserLoginDTO;
+import org.generation.app_hopemarket.dtos.UserRegisterDTO;
 import org.generation.app_hopemarket.model.Usuario;
-import org.generation.app_hopemarket.repository.ProdutoRepository;
 import org.generation.app_hopemarket.repository.UsuarioRepository;
+import org.generation.app_hopemarket.service.UsuarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,26 +31,48 @@ import org.springframework.web.server.ResponseStatusException;
 public class UsuarioController {
     
     private @Autowired UsuarioRepository repository; 
+    private @Autowired UsuarioService services;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> findAll(){
-       return ResponseEntity.ok (repository.findAll());
+    public List<Usuario> findAll(){
+        return repository.findAll();
     }
 
     @GetMapping ("/{id}")
-    public ResponseEntity<Usuario> findById(@PathVariable Long id){
-        return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Usuario> findById(@PathVariable (value = "id") Long id){
+        return repository.findById(id).map(resp -> ResponseEntity.status(200).body(resp)).orElseGet(() -> {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID inexistente!");
+        });
     }
-    @PostMapping
-    public ResponseEntity<Usuario> post (@RequestBody Usuario usuario){
-      return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
+    @PutMapping("/config")
+    public ResponseEntity<UserCredentialDTO> getCredential(@Valid @RequestBody UserLoginDTO usuario){
+        return services.validCredential(usuario);
+    }    
+
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> save (@Valid @RequestBody UserRegisterDTO usuario) {
+      return services.CadastrarUsuario(usuario);
     }
+
     @PutMapping
-    public ResponseEntity<Usuario> put (@RequestBody Usuario usuario){
-        return ResponseEntity.status(HttpStatus.OK).body(repository.save(usuario));
+    public ResponseEntity<Usuario> update(@RequestBody Usuario usuario){
+        return repository.findById(usuario.getId()).map(resp -> ResponseEntity.status(200).body(repository.save(usuario))).orElseGet(() -> {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID não encontrado");
+        });
     }
+
+    @SuppressWarnings("rawtypes")
     @DeleteMapping("/{id}")
-    public void delete (@PathVariable Long id){
-        repository.deleteById(id);
+    public ResponseEntity deleteById(@PathVariable (value = "id") Long id){
+        return repository.findById(id).map(resp -> {
+                repository.deleteById(id);
+                return ResponseEntity.status(204).build();  
+        }).orElseGet(() -> {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID inexistente!");
+        });
     }
+
+
+
 }
+
