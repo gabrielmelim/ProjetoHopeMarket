@@ -44,12 +44,12 @@ public class UsuarioController {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID inexistente!");
         });
     }
-    @PutMapping("/config")
+    @PutMapping("/auth")
     public ResponseEntity<UserCredentialDTO> getCredential(@Valid @RequestBody UserLoginDTO usuario){
         return services.validCredential(usuario);
     }    
 
-    @PostMapping("/login")
+    @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> save (@Valid @RequestBody UserRegisterDTO usuario) {
       return services.CadastrarUsuario(usuario);
     }
