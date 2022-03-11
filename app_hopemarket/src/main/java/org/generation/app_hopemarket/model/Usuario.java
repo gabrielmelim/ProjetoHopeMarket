@@ -4,6 +4,8 @@ package org.generation.app_hopemarket.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.generation.app_hopemarket.util.TipoAssinante;
+
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario {
@@ -18,11 +20,13 @@ public class Usuario {
     private String cpf;
 
     @NotNull
-    
     private String senha;
 
     @NotNull
     private String email;
+    
+    @Enumerated(EnumType.STRING)
+    private TipoAssinante pacote;
 
     public Usuario(){
         super();
@@ -84,4 +88,13 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public TipoAssinante getPacote() {
+        return this.pacote;
+    }
+
+    public void setPacote(TipoAssinante pacote) {
+        this.pacote = pacote;
+    }
+
 }
