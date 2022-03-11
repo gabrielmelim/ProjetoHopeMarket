@@ -16,9 +16,6 @@ public class Carrinho {
     private int id;
 
     @NotNull
-    private String idcompra;
-
-    @NotNull
     private String pagamento;
 
     @NotNull
@@ -30,14 +27,6 @@ public class Carrinho {
     @OneToMany(mappedBy = "carrinho",cascade = CascadeType.ALL)
     @JsonIgnoreProperties("carrinho")
     private List<Produto> produto;
-
-    public String getIdcompra() {
-        return idcompra;
-    }
-
-    public void setIdcompra(String idcompra) {
-        this.idcompra = idcompra;
-    }
 
     public String getPagamento() {
         return pagamento;
