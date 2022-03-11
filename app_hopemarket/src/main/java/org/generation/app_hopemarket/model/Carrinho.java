@@ -13,7 +13,10 @@ public class Carrinho {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+
+    @NotNull
+    private String email;
 
     @NotNull
     private String pagamento;
@@ -52,11 +55,22 @@ public class Carrinho {
         this.data = data;
     }
 
-    public int getId() {
-        return id;
+
+    public Long getId() {
+        return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+   
 }

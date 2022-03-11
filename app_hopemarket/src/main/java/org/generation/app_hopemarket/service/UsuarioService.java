@@ -1,7 +1,6 @@
 package org.generation.app_hopemarket.service;
 
 import java.nio.charset.Charset;
-import java.util.Date;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -66,12 +65,6 @@ public class UsuarioService {
         return "Basic " + new String(structureBase64);
     }
 
-  /*  private String generatorokenCarrinho(String email, Date data){
-        String structure = email + ":" + data;
-        byte[] structureBase64 = Base64.encodeBase64(structure.getBytes(Charset.forName("US-ASCII")));
-        return "Basic " + new String(structureBase64);
-    }
-  */
     public ResponseEntity<?> changePackage(Long id, TipoAssinante tipo){
         return repository.findById(id).map(resp -> {
             resp.setPacote(tipo);

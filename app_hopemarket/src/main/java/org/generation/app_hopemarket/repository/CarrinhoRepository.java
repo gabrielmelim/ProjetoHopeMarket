@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface CarrinhoRepository extends JpaRepository<Carrinho, Long> {
 
-    public List<Carrinho> findAllByIdcompraContainingIgnoreCase (String idcompra);
+    public List<Carrinho> findAllByEmailContainingIgnoreCase (String email);
 
 }

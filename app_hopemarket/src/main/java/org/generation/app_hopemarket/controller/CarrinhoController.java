@@ -75,9 +75,9 @@ public class CarrinhoController {
             @ApiResponse(responseCode = "400", description = "Erro na requisição", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Carrinho.class)) })
     })
-    @GetMapping("/id/{id}")
-    public ResponseEntity<List<Carrinho>> findByIdCompraCarrinho(@PathVariable String id) {
-        return ResponseEntity.ok(repository.findAllByIdcompraContainingIgnoreCase(id));
+    @GetMapping("/carrinho/{email}")
+    public ResponseEntity<List<Carrinho>> findByEmailCarrinho(@PathVariable String email) {
+        return ResponseEntity.ok(repository.findAllByEmailContainingIgnoreCase(email));
     }
 
     @Operation(summary = "Cadastrar Carrinho")
