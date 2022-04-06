@@ -89,6 +89,11 @@ public class ProdutoController {
     public ResponseEntity<List<Produto>> findByCategoriaProduto(@PathVariable String categoria) {
         return ResponseEntity.ok(repository.findAllByCategoriaContainingIgnoreCase(categoria));
     }
+    
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<List<Produto>> findByNomeProduto(@PathVariable String nome) {
+        return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
+    }
 
     @Operation(summary = "Cadastro Produto")
     @ApiResponses(value = {

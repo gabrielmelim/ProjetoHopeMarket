@@ -25,6 +25,8 @@ public class Usuario {
     @NotNull
     private String email;
     
+    private String tipo;
+    
     @Enumerated(EnumType.STRING)
     private TipoAssinante pacote;
 
@@ -97,4 +99,13 @@ public class Usuario {
         this.pacote = pacote;
     }
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+    
 }
