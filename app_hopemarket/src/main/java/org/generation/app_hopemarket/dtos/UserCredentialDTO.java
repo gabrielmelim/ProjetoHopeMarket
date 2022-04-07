@@ -5,6 +5,7 @@ public class UserCredentialDTO {
     private String nome;
     private String email;
     private String token;
+    private String tipo;
 
     public UserCredentialDTO(){
     }
@@ -47,6 +48,12 @@ public class UserCredentialDTO {
     public void setToken(String token) {
         this.token = token;
     }
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 
 
