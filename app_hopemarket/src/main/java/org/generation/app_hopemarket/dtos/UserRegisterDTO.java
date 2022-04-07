@@ -10,6 +10,7 @@ public class UserRegisterDTO {
     private @NotBlank @CPF String cpf;
     private @NotBlank @Email String email;
     private @NotBlank String senha;
+    private String tipo;
 
 
     public String getNome() {
@@ -43,6 +44,15 @@ public class UserRegisterDTO {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public String getTipo() {
+        return this.tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
 
     
 }
