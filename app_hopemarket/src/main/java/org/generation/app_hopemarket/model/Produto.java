@@ -29,6 +29,9 @@ public class Produto {
     @NotNull
     private int estoque;
 
+    @Size(max = 5000)
+    private String foto;
+
     @NotNull
     @Size(min = 2, max = 100)
     private String categoria;

@@ -9,11 +9,12 @@ public class UserCredentialDTO {
 
     public UserCredentialDTO(){
     }
-    public UserCredentialDTO(Long id, String nome, String email, String token){
+    public UserCredentialDTO(Long id, String nome, String email, String token, String tipo){
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.token = token;
+        this.tipo = tipo;
     }
 
 
