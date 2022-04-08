@@ -51,6 +51,7 @@ public class UsuarioService {
                         u.getId(),
                         u.getNome(),
                         u.getEmail(),
+                        u.getTipo(),
                         generatorToken(usuario.getEmail(), usuario.getSenha()));
                 return ResponseEntity.status(200).body(credential);
             } else {

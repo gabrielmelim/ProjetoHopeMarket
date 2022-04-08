@@ -29,6 +29,9 @@ public class Produto {
     @NotNull
     private int estoque;
 
+    @Size(max = 5000)
+    private String foto;
+
     @NotNull
     @Size(min = 2, max = 100)
     private String categoria;
@@ -75,6 +78,14 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+     public String getFoto() {
+        return nome;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     

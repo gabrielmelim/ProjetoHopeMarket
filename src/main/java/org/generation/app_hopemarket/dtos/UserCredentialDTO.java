@@ -5,14 +5,16 @@ public class UserCredentialDTO {
     private String nome;
     private String email;
     private String token;
+    private String tipo;
 
     public UserCredentialDTO(){
     }
-    public UserCredentialDTO(Long id, String nome, String email, String token){
+    public UserCredentialDTO(Long id, String nome, String email, String token, String tipo){
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.token = token;
+        this.tipo = tipo
     }
 
 
@@ -47,6 +49,16 @@ public class UserCredentialDTO {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public String getTipo() {
+        return this.tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    
 
 
 
