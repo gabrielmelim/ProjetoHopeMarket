@@ -23,7 +23,6 @@ public class Produto {
     private String nome;
 
     @NotNull
-    @Size(min = 2, max = 10)
     private double preco;
 
     @NotNull
@@ -70,6 +69,14 @@ public class Produto {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public Carrinho getCarrinho() {
+        return carrinho;
+    }
+
+    public void setCarrinho(Carrinho carrinho) {
+        this.carrinho = carrinho;
     }
 
     public String getNome() {
