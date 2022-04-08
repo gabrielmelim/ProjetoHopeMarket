@@ -37,7 +37,9 @@ public class UsuarioService {
                     usuario.getNome(),
                     usuario.getCpf(),
                     usuario.getEmail(),
+                    usuario.getTipo(),
                     usuario.getSenha());
+
 
             return ResponseEntity.status(201).body(repository.save(novoUsuario));
         }
@@ -51,8 +53,9 @@ public class UsuarioService {
                         u.getId(),
                         u.getNome(),
                         u.getEmail(),
-                        u.getTipo(),
-                        generatorToken(usuario.getEmail(), usuario.getSenha()));
+                        generatorToken(usuario.getEmail(), usuario.getSenha()),
+                        u.getTipo());
+
                 return ResponseEntity.status(200).body(credential);
             } else {
                 throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha inválida");

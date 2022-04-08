@@ -34,22 +34,26 @@ public class Usuario {
         super();
     }
 
-    public Usuario(String nome, String cpf, String email, String senha) {
+    public Usuario(String nome, String cpf, String email, String tipo, String senha) {
         super();
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
+        this.tipo = tipo;
         this.senha = senha;
     }
 
-    public Usuario(Long id, String nome, String cpf, String email, String senha){
+
+    public Usuario(Long id, String nome, String cpf, String email,String tipo, String senha){
         super();
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
+        this.tipo = tipo;
         this.senha = senha;
     }
+
 
     public String getCpf() {
         return this.cpf;
@@ -106,5 +110,6 @@ public class Usuario {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
 
 }
