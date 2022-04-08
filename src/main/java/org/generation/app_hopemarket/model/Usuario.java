@@ -28,6 +28,8 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private TipoAssinante pacote;
 
+    private String tipo;
+
     public Usuario(){
         super();
     }
@@ -95,6 +97,14 @@ public class Usuario {
 
     public void setPacote(TipoAssinante pacote) {
         this.pacote = pacote;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 }
