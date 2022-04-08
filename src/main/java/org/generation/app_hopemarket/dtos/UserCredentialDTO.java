@@ -14,7 +14,7 @@ public class UserCredentialDTO {
         this.nome = nome;
         this.email = email;
         this.token = token;
-        this.tipo = tipo
+        this.tipo = tipo;
     }
 
 
