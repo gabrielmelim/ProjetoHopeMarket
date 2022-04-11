@@ -88,7 +88,7 @@ public class Produto {
     }
 
      public String getFoto() {
-        return nome;
+        return foto;
     }
 
     public void setFoto(String foto) {
